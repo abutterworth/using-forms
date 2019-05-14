@@ -1,0 +1,9 @@
+@import "~@edx/edx-bootstrap/scss/edx/theme.scss";
+@import "~@edx/paragon/src/index.scss";
+
+body {
+  margin: 2rem;
+}
+.app {
+  max-width: 400px;
+}
