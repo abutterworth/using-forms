@@ -23,6 +23,13 @@ class App extends React.Component {
     });
   }
 
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    formData.set('username', this.props.username);
+    apiClient.post('/dummyurl', formData);
+  }
+
   onLanguageChange = (event) => {
     this.setState({
       language: event.target.value,
@@ -37,37 +44,40 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-      
-        <div className="form-group">
-          <label htmlFor="name">Full name</label>
+        <form onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="name">Full name</label>
 
-          <Input
-            id="name"
-            type="text"
-            value={this.state.name}
-            onChange={this.onNameChange}
-          />
-        </div>
+            <Input
+              id="name"
+              name="name"
+              type="text"
+              value={this.state.name}
+              onChange={this.onNameChange}
+            />
+          </div>
 
-      
-        <div className="form-group">
-          <label htmlFor="language">Site Language</label>
+        
+          <div className="form-group">
+            <label htmlFor="language">Site Language</label>
 
-          <Input
-            id="language"
-            type="select"
-            value={this.state.language}
-            options={siteLanguageOptions}
-            onChange={this.onLanguageChange}
-          />
-        </div>
+            <Input
+              id="language"
+              name="language"
+              type="select"
+              value={this.state.language}
+              options={siteLanguageOptions}
+              onChange={this.onLanguageChange}
+            />
+          </div>
 
-        <Button
-          className="btn-primary"
-          onClick={this.save}
-        >
-          Save
-        </Button>
+          <Button
+            className="btn-primary"
+            type="submit"
+          >
+            Save
+          </Button>
+        </form>
       </div>
     );
   }
