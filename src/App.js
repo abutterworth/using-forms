@@ -6,6 +6,11 @@ import siteLanguageOptions from './languages.js';
 
 
 class App extends React.Component {
+  state = {
+    name: 'hi',
+    lang: 'en',
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
 
@@ -15,16 +20,27 @@ class App extends React.Component {
     apiClient.post('/dummyUrl', formData);
   }
 
+  handleChange = (event) => {
+    // Not using this state, but it's cool!
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
   render() {
     return (
       <div className="app">
-        <form onSubmit={this.handleSubmit}>
+        <form
+          onSubmit={this.handleSubmit}
+          onChange={this.handleChange}
+        >
           <div className="form-group">
             <label htmlFor="name">Full name</label>
             <Input
               type="text"
               id="name"
               name="name"
+              value={this.state.name}
             />
           </div>
 
@@ -35,6 +51,7 @@ class App extends React.Component {
               id="lang"
               name="lang"
               options={siteLanguageOptions}
+              value={this.state.lang}
             />
           </div>
 
