@@ -13,7 +13,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-      
+        <img src={require("./build-this.png")} style={{width:'400px'}} />
       </div>
     );
   }
